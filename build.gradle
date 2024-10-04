@@ -1,0 +1,54 @@
+plugins {
+  id("java")
+  id("org.jetbrains.kotlin.jvm") version "1.9.23"
+  id("org.jetbrains.intellij") version "1.17.2"
+}
+
+group = "org.ma5d"
+version = "1.0-SNAPSHOT"
+
+repositories {
+  maven { url 'https://maven.aliyun.com/repository/central/'}
+  maven { url 'https://maven.aliyun.com/repository/public/' }
+  maven { url 'https://maven.aliyun.com/repository/google/' }
+  maven { url 'https://maven.aliyun.com/repository/jcenter/'}
+  maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
+  //    mavenCentral()
+}
+
+dependencies {
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+  testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+  testRuntimeOnly    'org.junit.vintage:junit-vintage-engine:5.9.3'
+  testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.3'
+}
+
+// Configure Gradle IntelliJ Plugin
+// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
+intellij {
+  version = '2023.2.5'
+//  type.set("IC") // Target IDE Platform
+//  plugins.set(listOf(/* Plugin Dependencies */))
+}
+
+  tasks.withType(JavaCompile) {
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
+  }
+
+  patchPluginXml {
+    sinceBuild = '232'
+    untilBuild = '242.*'
+  }
+
+//  signPlugin {
+//    certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+//    privateKey.set(System.getenv("PRIVATE_KEY"))
+//    password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+//  }
+//
+//  publishPlugin {
+//    token.set(System.getenv("PUBLISH_TOKEN"))
+//  }

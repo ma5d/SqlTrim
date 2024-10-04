@@ -1,0 +1,14 @@
+
+<idea-plugin>
+    <id>org.ma5d.trim</id>
+    <name>trim</name>
+    <vendor email="ma5d@qq.com" url="https://www.ma5d.com">ma5d</vendor>
+    <description>Filter files in the project view by trim</description>
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <action id="SQL trim" class="org.ma5d.trim.SqlTrim" text="SQL trim" description="SQL trim">
+            <add-to-group group-id="Copy.Paste.Special" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
